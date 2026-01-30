@@ -2,7 +2,7 @@
 
 ## Principio
 **Modificar archivos existentes SIEMPRE por unified diff. Sin excepciones.**
-**ClaudeMcpHost.exe lo vas a encontrar ubicado en /mnt/d/Desarrollo/Claude/Comunes**
+**ClaudeMcpHost.exe lo vas a encontrar ubicado en /mnt/d/Desarrollo/Claude**
 
 Este archivo se lee junto con **CLAUDE.md** (ahí van las reglas de “cómo generar” el diff). Acá queda el **contrato** del MCP.
 
