@@ -2,23 +2,52 @@
 
 ## Características generales de los repos de las versiones 2 de los sistemas de la empresa
 - ASP.NET Web Forms.
-- Target .NET Framework 4.7.2.
+- .NET Framework 4.7.2.
 - VB.NET
-- VS 2022 (probando VS 2026)
+- VS 2026
+- MySQL
+- SVN
 
 ## Definiciones
 - Cada sistema se compone de "puntos del sistema" o "programas".
-- Cada "punto del sistema" o "programa" está contenido en una carpeta repo de Tortoise SVN.
-- Localmente todos los repos se ubican en "/mnt/d/Desarrollo".
-- Cada repo contiene a su vez una subcarpeta con un proyecto de DLL de negocio identificada con la letra N, y una subcarpeta identificada con la letra P
-  que contiene el "programa en sí", un sitio web con el front. Si bien cada punto del sistema tiene su proyecto de negocio, a veces el "programa" (o sitio
-  web del front) contiene código de negocio. Esto no es deseable pero sucede.
-- La funcionalidad de base se maneja desde la biblioteca entidades.dll. El proyecto de VS se llama Clases.
-- El sistema se configura en cada cliente con una serie de elementos, de los cuales dos importantes son:
+- Cada "punto del sistema" o "programa" es un repo SVN (localmente usamos Tortoise).
+- Localmente todos los repos de los puntos del sistema se ubican en "/mnt/d/Desarrollo".
+- Si bien cada punto del sistema tiene su proyecto de negocio y así se refleja en el contenido de la solución de VS, a veces la misma contiene archivos y referencias a proyectos de otros repos.
+- La funcionalidad de base, mapeado de entidades y funciones básicas, se manejan desde la biblioteca entidades.dll. El proyecto de VS se llama Clases.
+- Cada cliente se parametriza de dos modos, entre otros de menor importancia:
   - La tabla "sympaa", que contiene registros tipo nro, detalle y valor, y se lee mediante Factory.getInstance().getParametro(nroParametro)
-  - El archivo parametrizacion.xml, que se encuentra en la carpeta raíz del sitio.
-- Cuando quiero comenzar a trabajar con un pedido que está asociado a un repo, tenés que resolver el problema en ese repo y no en otro, excepto que en VS
-  esté cargado el proyecto de otro repo, o copiados sus archivos .aspx y .aspx.vb. No empieces a buscar cosas en /mnt/d o /mnt/d/Desarrollo sin tener en cuenta esto.
+  - En menor medida el archivo parametrizacion.xml, que se encuentra en la carpeta raíz del sitio web.
+
+## Entidades / Estructura de capas / Funcionalidad básica
+- A. Obtención de SQLs y mapeo de registros: mapper.vb/mapperFux.vb. Por lo general son funciones accesibles sólo dentro del ensamblado.
+- B. Capa pública del manejo de entidades: Factory.vb/FactoryFux.vb.
+- C. Kernel de negocio: Funcionalidad.vb/FuncionalidadFux.vb.
+- D. Repo del programa -> Negocio: Proyecto DLL VB, nombrado como un código que contiene la letra N.
+- E. Repo del programa -> Front (el programa en sí): Sitio web, nombrado como un código que contiene la letra P.
+
+- Las funciones que comienzan con mapperQuery[...] generan los SQL para cada entidad.
+- La función fillObject pasa un DataRow a un Object (Friend)
+- Las funciones que comienzan con fill[...] completan un objeto de una clase específica con el DataRow obtenido desde la base. (Friend)
+- La función get[...] devuelve una entidad específica desde la BD (Pública)
+- La función fillListObject pasa un DataSet a una lista. (mapper / Es Friend)
+- La función getListObject pasa un DataSet a una lista (Factory / Pública)
+- Funcionalidad clase con la primera capa de negocio, que incluye las funciones más abarcativas.
+- En caso de ser necesario y si no hay nada predefinido, se puede consultar la base mediante Factory.getInstance().getQuery().
+
+- Los datos desde la base se leen con DBFunctions.DBToObject().
+- Los datos desde que se van a persistir en la base se escriben con DBFunctions.objectToDB().
+- El conjunto fecha/hora que viene del front se concetena con Funciones.concatenarFechaYHora().
+- Las fechas se formatean de manera estadarizada con Funciones.formatearFecha().
+- Los decimales se formatean a través de Funciones.formatearDecimales().
+- Disponemos de Funciones.devolverCurrentCultureEstandarDeDux().
+- La operación es la principal entidad del sistema. Dispone de soyImportacion() y soyExportacion().
+
+- Las entidades herendan por lo general de "base". Una manera simple te gestionarlas es a través de:
+  - Factory.getInstance().marcarParaAlta()
+  - Factory.getInstance().marcarParaBorrar()
+  - Factory.getInstance().marcarParaBorrarFisico()
+  - Factory.getInstance().marcarParaReplace()
+  - Se persiste con Factory.getInstance().persistir()
 
 ## Acerca del sistema
 Dux y Fux son dos sistemas pertenecientes a la misma empresa que se encargan de gestionar cuestiones y trámites de despachantes de aduanas (en el caso de Dux)

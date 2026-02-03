@@ -1,9 +1,11 @@
 # YUX001 - Seguimiento de operaciones
 
 ## Descripción
-YUX001 presenta una consulta con listado de cotizaciones de comercio exterior. Forma parte del sistema Fux. Tiene una pantalla popup grande donde se aplican filtros y se seleccionan las columnas a mostrar.
-Por otro lado, tiene la posibilidad de grabar una determinada consulta en lo que llamamos "plantillas". El usuario puede cargar una plantilla para mostrar inmediatamente la consulta, y grabarla tanto
-de manera privada (para el usuario únicamente) o pública (para todos los usuarios del sistema) Luego, tiene YUX001P002 como ABM de cotizaciones.
+YUX001 gestiona las cotizaciones del sistema Fux. Contiene YUX001P001, una pantalla de consulta con el listado de las cotizaciones de comercio exterior,
+y contiene YUX001P002, un ABM para gestionar cada cotización. La pantalla del listado tiene una pantalla popup grande donde se aplican filtros
+y se seleccionan las columnas a mostrar. Por otro lado, tiene la posibilidad de grabar una determinada consulta en lo que se denominan "plantillas".
+El usuario puede cargar una plantilla para mostrar inmediatamente la consulta, y grabarla la estructura de la consulta tanto de manera privada
+(para el usuario únicamente) como pública (para todos los usuarios del sistema)
 
 ## Build Commands
 
@@ -65,5 +67,4 @@ Uses `entidades.Factories.Factory.getInstance()` singleton pattern:
 
 - Spanish variable/method names throughout
 - Import/export operations: "Impo" (importacion) / "Expo" (exportacion)
-- Report classes named by client ID: `Cliente#####TapaCarpeta[Impo|Expo]_[ClientName]`
 - Date formatting via `Funciones.formatearFecha()`, `Funciones.toDate()`
