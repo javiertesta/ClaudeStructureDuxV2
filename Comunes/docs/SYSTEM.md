@@ -11,7 +11,7 @@
 ## Definiciones
 - Cada sistema se compone de "puntos del sistema" o "programas".
 - Cada "punto del sistema" o "programa" es un repo SVN (localmente usamos Tortoise).
-- Localmente todos los repos de los puntos del sistema se ubican en "/mnt/d/Desarrollo".
+- Localmente todos los repos de los puntos del sistema se ubican en "D:\Desarrollo".
 - Si bien cada punto del sistema tiene su proyecto de negocio y así se refleja en el contenido de la solución de VS, a veces la misma contiene archivos y referencias a proyectos de otros repos.
 - La funcionalidad de base, mapeado de entidades y funciones básicas, se manejan desde la biblioteca entidades.dll. El proyecto de VS se llama Clases.
 - Cada cliente se parametriza de dos modos, entre otros de menor importancia:
@@ -73,16 +73,12 @@ Si te pido que analices un pedido para empezar a trabajar sobre él, lo que ten�
   - 1. Número de pedido.
   - 2. Número de cliente para el cual se está realizando el pedido (el cliente nuestro; no el usuario que opera ni algún cliente de nuestro cliente).
   - 3. Texto del pedido.
-  - 4. Vas a encontrar imágenes que se adjuntaron al pedido en "/mnt/d" con nombre en formato "capturaXXpedidoXXXXX"
-- Tenés que indicarme cuál es la zona del código donde tenemos que actuar.
-- Tenés que preguntarme, siempre que sea posible, los valores de parámetros que encontrás en el camino (acordate de la función getParametro, en Factory.vb).
-  Necesitamos saber cuáles son esos valores en la base del cliente porque los que pasa la función getParametro por lo general son los de alguna base de testing.
-  Lo que hacemos es editar la función getParametro y pisar los valores que se traen desde la BD (que probablemente no sea la de producción del cliente) con los
-  valores que realmente tiene la base del cliente.
-- Con lo anterior, tenés que modificar la función getParametro(ByVal id As Long) que está en Factory.vb (dentro del repo Clases, en la subcarpeta clases/Factories).
-  Fijate que ya tiene otros ejemplos de otros pedidos con sus parámetros. Hay un Case que deriva según número de pedido, y otro Case que deriva por número de parámetro.
+- Las imágenes que tiene adjuntas el pedido, para ayudar a resolverlo, las tenés que buscar en "D:\Desarrollo\Claude\Adjuntos". Buscá y leé siempre estos archivos.
+- Te puedo llegar a pedir que modifiques la función getParametro(ByVal id As Long) (Factory.vb, en el repo Clases)
+  Fijate que seguramente ya contiene otros pedidos con sus parámetros. Hay un Case que deriva según número de pedido, y otro Case que deriva por número de parámetro.
   Armá la estructura correspondiente para agregarla donde corresponda con el fin de pisar los valores de testing con los del cliente.
-  - El parámetro 0 colocalo siempre con el valor del número de cliente. Aunque no se use en el código, ponelo.
+  - Colocá el parámetro 0 seteando como valor el código de cliente.
+  - Si hay otros parámetros que me interesen agregar, te digo.
   - La estructura que tenés que modificar es la que tiene la forma:
   			Dim idPedido As Integer = [Número de pedido sobre el cual estamos trabajando]
 				Select Case idPedido

@@ -2,7 +2,7 @@
 
 ## Principio
 **Modificar archivos existentes SIEMPRE por unified diff. Sin excepciones.**
-**ClaudeMcpHost.exe lo vas a encontrar ubicado en /mnt/d/Desarrollo/Claude**
+**ClaudeMcpHost.exe lo vas a encontrar ubicado en D:\Desarrollo\Claude**
 
 Este archivo se lee junto con **CLAUDE.md** (ahí van las reglas de “cómo generar” el diff). Acá queda el **contrato** del MCP.
 
@@ -37,7 +37,7 @@ El tercer parámetro es una **RUTA a un archivo .diff**, NO el contenido del dif
 
 ## Flujo obligatorio
 1) `read` (o `read-range`) → obtener hash / contexto real
-2) Crear archivo .diff con Write tool (ej. `Write("/mnt/d/Desarrollo/patch.diff")`)
+2) Crear archivo .diff con Write tool (ej. `Write("D:\Desarrollo\Claude\Temp\patch.diff")`)
 3) `apply-patch "<archivo-destino>" <hash> "<ruta-patch.diff>"`
 4) Opcionalmente borrar el archivo .diff después
 
