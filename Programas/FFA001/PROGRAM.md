@@ -1,14 +1,14 @@
-# FFA018 - Proveedores
+# FFA001 - Clientes
 
 ## Descripción
-FFA018 es un ABM que se encarga de la gestión de proveedores. Forma parte de los sistemas Dux y Fux.
+FFA001 es un ABM que se encarga de la gestión de clientes. Forma parte de los sistemas Dux y Fux.
 
 ## Architecture
 
 ### Solution Structure
 
-- **FFA018N\** - Business logic library (VB.NET class library producing FFA018N.dll)
-- **FFA018P\** - Web presentation layer (ASP.NET Web Forms website)
+- **FFA001N\** - Business logic library (VB.NET class library producing FFA001N.dll)
+- **FFA001P\** - Web presentation layer (ASP.NET Web Forms website)
 
 ### Key Dependencies (External Projects)
 
@@ -20,18 +20,18 @@ External DLLs from `..\..\DLLS\Sistema\`:
 - `entidades.dll` - Core entity classes (`entidades` namespace)
 - `Newtonsoft.Json.dll` - JSON serialization
 
-### Business Logic Layer (FFA018N)
+### Business Logic Layer (FFA001N)
 
-Files follow numeric naming convention `FFA018N###.vb`
+Files follow numeric naming convention `FFA001N###.vb`
 
-### Presentation Layer (FFA018P)
+### Presentation Layer (FFA001P)
 
 - **MasterPage.master** / **MasterPage3.master** / **ResponsiveMasterPage.master** - Page templates
 - **App_Code\paginaBase.vb** - Base page class inheriting from `globalizacion`, provides session handling
 - **controles\** - Reusable ASCX user controls (modals, menus, input helpers)
 - **Bin\** - Compiled DLLs from the entire Dux system
 
-Page naming convention: `[MODULE][NUMBER]P[PAGE].aspx` (e.g., `ABC902P002.aspx`, `FFA018P001.aspx`)
+Page naming convention: `[MODULE][NUMBER]P[PAGE].aspx` (e.g., `ABC902P002.aspx`, `FFA001P001.aspx`)
 
 ### Session Management
 

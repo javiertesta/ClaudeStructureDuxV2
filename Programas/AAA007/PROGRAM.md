@@ -1,37 +1,46 @@
-# FFA018 - Proveedores
+# AAA007 - Avisos individuales
 
 ## Descripción
-FFA018 es un ABM que se encarga de la gestión de proveedores. Forma parte de los sistemas Dux y Fux.
+El programa gestiona el envío automático y periódico de información por mail.
+
+## Build Commands
+
+Build the solution using Visual Studio or MSBuild:
+```bash
+msbuild AAA007.sln /p:Configuration=Debug
+```
 
 ## Architecture
 
 ### Solution Structure
 
-- **FFA018N\** - Business logic library (VB.NET class library producing FFA018N.dll)
-- **FFA018P\** - Web presentation layer (ASP.NET Web Forms website)
+- **AAA007N\** - Business logic library (VB.NET class library producing AAA007N.dll)
+- **AAA007P\** - Web presentation layer (ASP.NET Web Forms website)
 
 ### Key Dependencies (External Projects)
 
 The solution references these projects from parent directories:
 - `..\Clases\Clases.vbproj` - Shared entity classes (`entidades` namespace)
-Tener en cuenta que dentro del repo `Clases`, ubicado en `..\Clases`, hay una subcarpeta que también se llama `clases`.
-  
+  Tener en cuenta que dentro del repo `Clases`, ubicado en `..\Clases` hay una subcarpeta que también se llama `clases`.
+  `..\Clases\clases` es además importante; contiene gran parte del contenido del repo.
+
 External DLLs from `..\..\DLLS\Sistema\`:
-- `entidades.dll` - Core entity classes (`entidades` namespace)
+- `entidades.dll` - Core entity classes with `entidades.Factories.Factory` singleton
+- `itextsharp.dll` - PDF generation
 - `Newtonsoft.Json.dll` - JSON serialization
 
-### Business Logic Layer (FFA018N)
+### Business Logic Layer (YNC001N)
 
-Files follow numeric naming convention `FFA018N###.vb`
+Files follow numeric naming convention `AAA007N###.vb`
 
-### Presentation Layer (FFA018P)
+### Presentation Layer (AAA007P)
 
 - **MasterPage.master** / **MasterPage3.master** / **ResponsiveMasterPage.master** - Page templates
 - **App_Code\paginaBase.vb** - Base page class inheriting from `globalizacion`, provides session handling
 - **controles\** - Reusable ASCX user controls (modals, menus, input helpers)
 - **Bin\** - Compiled DLLs from the entire Dux system
 
-Page naming convention: `[MODULE][NUMBER]P[PAGE].aspx` (e.g., `ABC902P002.aspx`, `FFA018P001.aspx`)
+Page naming convention: `[MODULE][NUMBER]P[PAGE].aspx` (e.g., `ABC902P002.aspx`, `AAA007P001.aspx`)
 
 ### Session Management
 
@@ -54,4 +63,5 @@ Uses `entidades.Factories.Factory.getInstance()` singleton pattern:
 
 - Spanish variable/method names throughout
 - Import/export operations: "Impo" (importacion) / "Expo" (exportacion)
+- Report classes named by client ID: `Cliente#####TapaCarpeta[Impo|Expo]_[ClientName]`
 - Date formatting via `Funciones.formatearFecha()`, `Funciones.toDate()`

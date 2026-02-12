@@ -6,7 +6,7 @@
 - VB.NET
 - VS 2026
 - MySQL
-- SVN
+- Tortoise SVN
 
 ## Definiciones
 - Cada sistema se compone de "puntos del sistema" o "programas".

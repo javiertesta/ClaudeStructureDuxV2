@@ -1,21 +1,9 @@
 # CLAUDE.md
-
-Este archivo contiene las instrucciones principales para trabajar en este repositorio.
-La documentación detallada está organizada en archivos separados.
+Este archivo contiene las instrucciones principales para trabajar en este repositorio con Claude y/o Codex CLI (si este archivo se usa como doc de instrucciones/fallback).
 
 ## Documentación
-
-- **[docs/MCP.md](docs/MCP.md)** - Reglas del MCP (ClaudeMcpHost.exe) para edición segura de archivos
-- **[docs/SYSTEM.md](docs/SYSTEM.md)** - Información general del sistema Dux/Fux
-- **[docs/PROGRAM.md](docs/PROGRAM.md)** - Información específica del programa YNC001
+- **docs/SYSTEM.md** - Información general del sistema Dux/Fux (común a todos los programas)
+- **docs/PROGRAM.md** - Información específica del programa YNC001 (específico de este programa)
 
 ## Reglas fundamentales
-
-1. **Modificación de archivos existentes**: Usar EXCLUSIVAMENTE ClaudeMcpHost.exe (ver docs/MCP.md)
-2. **Creación de archivos nuevos**: Usar mecanismo por defecto de Claude
-3. **Eliminación de archivos**: Usar mecanismo por defecto de Claude
-4. **Commits SVN**: NUNCA hacer commits sin autorización explícita
-
-## Principio rector
-
-**El modelo propone cambios. El host decide. Los bytes no se negocian.**
+1. **Commits SVN**: NUNCA hacer commits sin autorización explícita.
