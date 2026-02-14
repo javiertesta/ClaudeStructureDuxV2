@@ -17,7 +17,7 @@ Este archivo contiene las instrucciones principales para trabajar en este reposi
 - Usar siempre esta ruta para compilar proyectos .NET Framework desde la línea de comandos.
 
 ## Documentación
-- **docs/PROGRAM.md** - Información específica del programa YNC001 (específico de este programa)
+- **docs** - Información específica del repo que se debe leer obligadamente.
 
 ## Sistema Dux/Fux - Información general
 
