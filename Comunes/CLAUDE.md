@@ -4,9 +4,20 @@ Este archivo contiene las instrucciones principales para trabajar en este reposi
 ## Reglas fundamentales
 1. **Commits**: NUNCA hacer commits sin autorización explícita.
 2. **Edición de archivos**: Prohibido modificar archivos con herramientas por fuera del uso del MCP.
-3. **Aplicación de patches (file.apply_patch_only)**: El parchador interno es patch.exe (el que viene con Git for Windows). Limitaciones concretas que hay que respetar:
-   - **Un solo hunk por llamada**: patch.exe rechaza diffs con múltiples bloques @@. Si hay que modificar dos lugares del mismo archivo, hacer dos llamadas separadas.
-   - **El diff debe terminar con newline**: La última línea del diff tiene que ser una línea de contexto (sin + ni -) seguida de newline. Si el diff termina en la línea modificada, patch.exe falla con "patch unexpectedly ends in middle of line".
+3. **Aplicación de patches (file.apply_patch_only)**:
+     - El parchador interno es `patch.exe`, de Git for Windows.
+     - La tool `file.apply_patch_only` espera **unified diff puro** (estilo git):
+       - Encabezados `---` / `+++`
+       - Hunks `@@ -start[,count] +start[,count] @@`
+       - Líneas de hunk con prefijo: `' '` (contexto), `'+'` (alta), `'-'` (baja)
+     - **No usar** wrappers tipo:
+       - `*** Begin Patch`
+       - `*** Update File`
+       - `*** End Patch`
+       (ese formato corresponde a otra herramienta, no a `file.apply_patch_only`).
+     - Mantener contexto exacto (tabs/espacios) en líneas de contexto y borrado.
+     - No partir líneas largas manualmente dentro del diff.
+     - El diff debe terminar con newline (`\n`).
 4. Por fuera del MCP sí está permitido crear archivos desde cero, copiarlos, moverlos, o eliminarlos.
 
 ## Herramientas de compilación
@@ -16,7 +27,6 @@ Este archivo contiene las instrucciones principales para trabajar en este reposi
 
 ## Documentación
 - **docs** - Información específica del repo que se debe leer obligadamente.
-
 
 ## Sistema Dux/Fux - Información general
 
