@@ -2,22 +2,21 @@
 Este archivo contiene las instrucciones principales para trabajar en este repositorio con Claude y/o Codex CLI (si este archivo se usa como doc de instrucciones/fallback).
 
 ## Reglas fundamentales
-1. **Commits SVN**: NUNCA hacer commits sin autorización explícita.
-2. **Edición de archivos**: Prohibido modificar archivos con herramientas fuera del MCP.
-   Todos los cambios deben aplicarse exclusivamente mediante el MCP (patch-only / file.apply_patch_only).
-3. **Aplicación de patches (file.apply_patch_only)**: Al armar diffs unificados:
-   - Siempre leer el rango exacto del archivo con `file_read_range` antes de armar el diff.
-   - Verificar que el primer carácter de cada línea del diff sea exactamente `+` o `-` sin espacios extra antes.
-   - Recordar que el MCP interpreta espacios antes de `+` o `-` como error de formato.
-   - Ante la duda, usar un hunk más pequeño con contexto mínimo.
-4. Está permitido crear archivos desde cero, copiarlos, moverlos, o eliminarlos.
+1. **Commits**: NUNCA hacer commits sin autorización explícita.
+2. **Edición de archivos**: Prohibido modificar archivos con herramientas por fuera del uso del MCP.
+3. **Aplicación de patches (file.apply_patch_only)**: El parchador interno es patch.exe (el que viene con Git for Windows). Limitaciones concretas que hay que respetar:
+   - **Un solo hunk por llamada**: patch.exe rechaza diffs con múltiples bloques @@. Si hay que modificar dos lugares del mismo archivo, hacer dos llamadas separadas.
+   - **El diff debe terminar con newline**: La última línea del diff tiene que ser una línea de contexto (sin + ni -) seguida de newline. Si el diff termina en la línea modificada, patch.exe falla con "patch unexpectedly ends in middle of line".
+4. Por fuera del MCP sí está permitido crear archivos desde cero, copiarlos, moverlos, o eliminarlos.
 
 ## Herramientas de compilación
-- **MSBuild (VS 2026)**: `C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\amd64\MSBuild.exe`
-- Usar siempre esta ruta para compilar proyectos .NET Framework desde la línea de comandos.
+- Compilar con `C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\amd64\MSBuild.exe`
+- Usar `-` en lugar de `/` para los flags (Git Bash convierte `/flag` a rutas Windows)
+- Compilar de a un proyecto por llamada.
 
 ## Documentación
 - **docs** - Información específica del repo que se debe leer obligadamente.
+
 
 ## Sistema Dux/Fux - Información general
 
@@ -81,6 +80,6 @@ Inicialmente casi no tiene páginas de otros programas salvo excepciones, o salv
 Por todo lo dicho, cuando te encuentres con un repo ya bajado, muy probablemente vas a ver en la carpeta P un sitio web funcional y ejecutable.
 Si lo ves incompleto, es probable que le falte copiar la plantilla.
 
-Las versiones 2 del sistema están en su etapa final. Como tiene años en el mercado, vas a encontrar diversas maneras de
+Las versiones 2 del sistema están en su etapa final. Como tiene años en el mercado vas a encontrar diversas maneras de
 encarar las cosas. Podés usar SVN para Windows para revertir cambios pero consultame antes de hacerlo.
 Nunca hagas commits.
