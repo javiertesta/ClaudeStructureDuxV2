@@ -5,3 +5,8 @@
 /.vs
 /Adjuntos
 /erroresmcp
+/mcp
+
+# Respaldos que quedan al desplegar un Mcp.exe nuevo (.prev y fechados, p. ej. Mcp.exe.20260928)
+/Mcp.*.prev
+/Mcp.*.20*
